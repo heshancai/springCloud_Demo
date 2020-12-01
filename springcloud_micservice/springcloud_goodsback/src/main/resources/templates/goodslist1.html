@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="|${#request.getContextPath()}/|">
+<!--    <base th:href="${#request.getContextPath() + '/back/'}"/>-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+    <!-- Reset Stylesheet -->
+    <link rel="stylesheet" href="resources/css/reset.css" type="text/css"
+          media="screen" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css"
+          media="screen" />
+    <link rel="stylesheet" href="resources/css/invalid.css" type="text/css"
+          media="screen" />
+
+    <!--                       Javascripts                       -->
+    <!-- jQuery -->
+    <script type="text/javascript"
+            src="resources/scripts/jquery-1.9.1.min.js"></script>
+    <!-- jQuery Configuration -->
+<!--    <script type="text/javascript"-->
+<!--            src="resources/scripts/simpla.jquery.configuration.js"></script>-->
+
+    <!--添加jquery的弹窗依赖-->
+    <script type="text/javascript" src="resources/widget/dialog/jquery-ui-1.9.2.custom.min.js"></script>
+    <!--导入css文件-->
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+
+    <!--导入文件上传的依赖-->
+    <script type="text/javascript" src="resources/widget/webuploader/webuploader.min.js"></script>
+    <!--导入样式文件-->
+    <link rel="stylesheet" href="resources/widget/webuploader/webuploader.css">
+</head>
+<body>
+<div id="main-content">
+    <div class="content-box">
+        <!-- End .content-box-header -->
+        <div class="content-box-content">
+            <div class="tab-content default-tab" id="tab1">
+                <table>
+                    <thead>
+                    <tr>
+                        <th><input class="check-all" type="checkbox" /></th>
+                        <th>商品的编号</th>
+                        <th>商品的名称</th>
+                        <th>商品的封面</th>
+                        <th>商品的价格</th>
+                        <th>商品的库存</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                    <tr th:each="goods : ${list}">
+                        <td><input type="checkbox" /></td>
+                        <td th:text="${goods.id}">Lorem ipsum dolor</td>
+                        <td th:text="${goods.subject}">Lorem ipsum dolor</td>
+                        <td><img style="height:90px; width: 100px;" th:src="${goods.fmUrl}" /></td>
+                        <td th:text="${#numbers.formatCurrency(goods.price)}"></td>
+                        <!--库存-->
+                        <td th:text="${goods.save}">Donec tortor diam</td>
+                        <td >
+                            <!-- Icons --> <a href="#" title="Edit">
+                            <img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+                            <a th:href="|/goods/delete/${goods.id}|" title="Delete">
+                                <img src="resources/images/icons/cross.png" alt="Delete" /></a>
+                            <a href="#" title="Edit Meta">
+                                <img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="bulk-actions align-left">
+                                <a class="mybutton" onclick="dialog();">添加商品</a>
+                            </div>
+                           <div class="pagination">
+                                <a th:href="|/goods/pagelist?current=1|" title="First Page">&laquo;首页</a>
+                                <a th:href="|/goods/pagelist?current=${pageInfo.current -1}|" title="Previous Page">&laquo; 上一页</a>
+                                <!--<a th:each="${i : #numbers.sequence(1,pageInfo.pages)}" class="number" th:text="${i}">1</a>-->
+                               <!--遍历总页数 整形数组-->
+                               <span th:each="i:${#numbers.sequence(1,pageInfo.pages)}">
+                                    <a class="number" th:text="${i}" th:href="|/goods/pagelist?current=${i}|" onclick="Myclick(this)"></a>
+                                </span>
+                               <script type="text/javascript">
+                                   $(function () {
+                                       $(".number").focus    (function () {
+                                           $(this).attr("class","number current");
+                                       });
+                                   });
+                               </script>
+                                <!--<a href="#" class="number"title="2">2</a>
+                                <a href="#" class="number current" title="3">3</a>
+                                <a href="#" class="number" title="4">4</a>-->
+                            <a th:href="|/goods/pagelist?current=${pageInfo.current +1 > pageInfo.pages ? pageInfo.pages:pageInfo.current +1}|" title="Next Page">下一页 &raquo;</a>
+                            <a th:href="|/goods/pagelist?current=${pageInfo.pages}|" title="Last Page">尾页 &raquo;</a>
+                               <a href="javaScript:void (0)" th:text="|总页数: ${pageInfo.pages}|">&raquo;</a>
+                               <a href="javaScript:void (0)" th:text="|总记录数: ${pageInfo.total}|">&raquo;</a>
+                            </div>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+
+
+                </table>
+            </div>
+        </div>
+        <!-- End .content-box-content -->
+    </div>
+</div>
+<!-- End #main-content -->
+<script type="text/javascript">
+    //弹出框
+    function dialog() {
+        $("#mydialog").dialog({
+            width: 800,
+            height: 600,
+            title: "添加商品",
+            modal: true
+        });
+    }
+    
+    //上传单个文件保存到本地磁盘中 和进行回显
+    $(function () {
+
+        // 初始化Web Uploader
+        var uploader = WebUploader.create({
+            // 选完文件后，是否自动上传。
+            auto: true,
+            // swf文件路径
+            swf: "/resources/widget/webuploader/Uploader.swf",
+            // 文件接收服务端。
+            server: '/goods/uploader',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#fm_uploader'
+        });
+
+        //设置上传后的回调方法
+        uploader.on('uploadSuccess',function (file, response) {
+            if(response.code=='200'){
+                //设置图片的回显
+                $("#fm_img").attr("src",response.data);
+                //保存路径
+                $("#fmurl").val(response.data);
+            }else {
+                alert("上传图片失败");
+            }
+        })
+    });
+
+    //上传多个文件进行 回显
+    $(function () {
+            // 初始化Web Uploader
+        var uploader = WebUploader.create({
+            // 选完文件后，是否自动上传。
+            auto: true,
+            // swf文件路径
+            swf: "/resources/widget/webuploader/Uploader.swf",
+            // 文件接收服务端。
+            server: '/goods/uploader',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#other_uploader'
+        });
+
+        //回显多张图片
+        //上传成功后的操作
+    uploader.on('uploadSuccess',function (file,response) {
+        //上传成功
+        if(response.code=='200'){
+
+            //拼接图片的标签
+            var html="<img style='width: 120px; height: 120px; margin: 10px' src='" + response.data + "'/>";
+            $("#imgdiv").append(html);
+
+            //图片的路径拼接到隐藏域
+            var htmlinput="<input type='hidden' name='otherurls'value='"+response.data+"'/>";
+            $("#imgurl").append(htmlinput);
+        }else {
+            alert("上传多个图片失败");
+        }
+
+
+    });
+
+
+
+
+    });
+    
+    
+</script>
+
+<!--添加商品的弹出框-->
+<!--div在当前页面不展示-->
+<div id="mydialog" style="display: none">
+
+    <!--以下设置弹出框的内容-->
+    <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab2">
+            <form action="/goods/insert" method="post">
+                <fieldset>
+                    <p>
+                        <label>商品标题</label>
+                        <input
+                                class="text-input medium-input datepicker" type="text"
+                                name="subject" />
+                    </p>
+                    <p>
+                        <label>上传封面</label>
+                        <img
+                                id="fm_img" style="width: 120px; height: 120px"/>
+                        <input type="hidden" id="fmurl" name="fmurl"/>
+
+                    <div id="fm_uploader">上传封面</div>
+                    </p>
+                    <p>
+                        <label>上传其他图片</label>
+                    <div id="other_uploader">上传其他图片</div>
+                    <div id="imgdiv" style="width: 600px; height: 300px; border: darkgray solid 1px; margin-top: 10px"></div>
+                    <!--进行多张文件进行回显-->
+                    <div id="imgurl">
+
+                    </div>
+                    </p>
+                    <p>
+                        <label>商品价格</label>
+                        <input
+                                class="text-input medium-input datepicker" type="text"
+                                name="price" />
+                    </p>
+                    <p>
+                        <label>商品库存</label>
+                        <input
+                                class="text-input medium-input datepicker" type="text"
+                                name="save" />
+                    </p>
+                    <!-- <p>
+                         <label>Large form input</label> <input
+                             class="text-input large-input" type="text" id="large-input"
+                             name="large-input" />
+                     </p>-->
+
+                    <p>
+                        <label>商品描述</label>
+                        <textarea class="text-input textarea wysiwyg" id="textarea"
+                                  name="info" cols="79" rows="15"></textarea>
+                    </p>
+                    <p>
+                        <button type="submit">添加商品</button>
+                    </p>
+                </fieldset>
+                <div class="clear"></div>
+                <!-- End .clear -->
+            </form>
+        </div>
+        <!-- End #tab2 -->
+    </div>
+
+</div>
+
+</body>
+</html>

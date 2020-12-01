@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath() +'/'}">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>疯狂汽车城-首页</title>
+    <link rel="stylesheet" href="css/base.css" type="text/css" />
+    <link rel="stylesheet" href="css/shop_common.css" type="text/css" />
+    <link rel="stylesheet" href="css/shop_header.css" type="text/css" />
+    <link rel="stylesheet" href="css/shop_home.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js" ></script>
+    <script type="text/javascript" src="js/topNav.js" ></script>
+    <script type="text/javascript" src="js/focus.js" ></script>
+    <script type="text/javascript" src="js/shop_home_tab.js" ></script>
+</head>
+<body>
+<!-- Header  -wll-2013/03/24 -->
+<div class="shop_hd">
+    <!-- Header TopNav -->
+
+        <!--页面抽抽取头部导航栏信息  到公共的页面-->
+        <!--引入html抽取的片段 页面名称和片段名称-->
+        <div th:replace="header :: myheader"></div>
+
+    <!-- Header TopNav End -->
+
+    <!-- TopHeader Center -->
+    <div class="shop_hd_header">
+        <div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="疯狂汽车" /></a><span>疯狂汽车城</span></h1></div>
+        <div class="shop_hd_header_search">
+            <ul class="shop_hd_header_search_tab">
+                <li id="search" class="current">商品</li>
+                <li id="shop_search">店铺</li>
+            </ul>
+            <div class="clear"></div>
+            <div class="search_form">
+                <!--进入另外的项目工程-->
+                <form method="post" action="http://localhost:8081/search/searchByKeyword">
+                    <div class="search_formstyle">
+                        <input type="text" class="search_form_text" name="keyword" placeholder="搜索其实很简单！" />
+                        <input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!-- TopHeader Center End -->
+
+    <!-- Header Menu -->
+    <div class="shop_hd_menu">
+        <!-- 所有商品菜单 -->
+
+        <div class="shop_hd_menu_all_category shop_hd_menu_hover"><!-- 首页去掉 id="shop_hd_menu_all_category" 加上clsss shop_hd_menu_hover -->
+            <div class="shop_hd_menu_all_category_title"><h2 title="汽车品牌分类"><a href="javascript:void(0);">汽车品牌分类</a></h2><i></i></div>
+            <div id="shop_hd_menu_all_category_hd" class="shop_hd_menu_all_category_hd">
+                <ul class="shop_hd_menu_all_category_hd_menu clearfix">
+                    <!-- 单个菜单项 -->
+                    <li id="cat_1" class="">
+                        <h3><a  title="红旗">红旗</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="女装" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="男装" >型号</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+                    <!-- 单个菜单项 End -->
+                    <li id="cat_2" class="">
+                        <h3><a  title="比亚迪">比亚迪</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="鞋子" >鞋子</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="包包" >包包</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+<!--                        </div>-->
+                    </li>
+
+                    <li id="cat_3" class="">
+                        <h3><a  title="宝骏">宝骏</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="美妆" >美妆</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+
+                    <li id="cat_4" class="">
+                        <h3><a  title="丰田">丰田</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="美妆" >美妆</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+
+                    <li id="cat_5" class="">
+                        <h3><a  title="宝马">宝马</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+
+                    <li id="cat_6" class="">
+                        <h3><a  title="大众">大众</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="美妆" >美妆</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+                    <li id="cat_7" class="">
+                        <h3><a  title="玛莎拉蒂">玛莎拉蒂</a></h3>
+                        <div id="cat_1_menu" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="美妆" >美妆</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+                    <li id="cat_8" class="">
+                        <h3><a  title="奥迪">奥迪</a></h3>
+                        <div id="" class="cat_menu clearfix" style="">
+                            <dl class="clearfix">
+                                <dt><a href="配件" >配件</a></dt>
+                                <dd>
+                                    <a >轮胎</a>
+                                    <a >发动机</a>
+                                    <a >气垫</a>
+                                    <a >后视镜</a>
+                                    <a >座椅</a>
+                                    <a >方向盘</a>
+                                    <a >雨刷</a>
+                                    <a >行车记录仪</a>
+                                    <a >后视镜</a>
+                                    <a >车毯</a>
+                                    <a >车载导航仪</a>
+                                    <a >语音播报器</a>
+                                </dd>
+                            </dl>
+
+<!--                            <dl class="clearfix">-->
+<!--                                <dt><a href="美妆" >美妆</a></dt>-->
+<!--                                <dd>-->
+<!--                                    <a >轮胎</a>-->
+<!--                                    <a >发动机</a>-->
+<!--                                    <a >气垫</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >座椅</a>-->
+<!--                                    <a >方向盘</a>-->
+<!--                                    <a >雨刷</a>-->
+<!--                                    <a >行车记录仪</a>-->
+<!--                                    <a >后视镜</a>-->
+<!--                                    <a >车毯</a>-->
+<!--                                    <a >车载导航仪</a>-->
+<!--                                    <a >语音播报器</a>-->
+<!--                                </dd>-->
+<!--                            </dl>-->
+                        </div>
+                    </li>
+<!--                    <li class="more"><a >限时抢购优惠卷列表</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <!-- 所有商品菜单 END -->
+
+        <!-- 普通导航菜单 -->
+        <ul class="shop_hd_menu_nav">
+            <li class="current_link"><a ><span>首页</span></a></li>
+            <li class="link"><a ><span>团购</span></a></li>
+            <li class="link"><a ><span>汽车品牌</span></a></li>
+            <li class="link"><a ><span>优惠卷中心</span></a></li>
+            <li class="link"><a ><span>积分中心</span></a></li>
+            <li class="link"><a ><span>运动车型专场</span></a></li>
+            <li class="link"><a ><span>汽车微商城</span></a></li>
+        </ul>
+        <!-- 普通导航菜单 End -->
+    </div>
+    <!-- Header Menu End -->
+
+
+
+</div>
+<div class="clear"></div>
+<!-- Header End -->
+
+
+<!-- Body -wll-2013/03/24 -->
+<div class="shop_bd clearfix">
+    <!-- 第一块区域  -->
+    <div class="shop_bd_top clearfix">
+        <div class="shop_bd_top_left"></div>
+        <div class="shop_bd_top_center">
+            <!-- 图片切换  begin  -->
+            <div class="xifan_sub_box">
+                <div id="p-select" class="sub_nav"><div class="sub_no" id="xifan_bd1lfsj"> <ul></ul></div></div>
+                <div id="xifan_bd1lfimg">
+                    <div>
+                        <dl class=""></dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar.jpg" alt="红旗跑车"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">红旗跑车</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar02.jpg" alt="玛莎拉蒂"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">玛莎拉蒂</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar03.jpg" alt="雷克萨斯"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">雷克萨斯</a></h2></dd>
+                        </dl>
+                        <dl class=""><img
+                                src="../../../../../springcloud_resources/src/main/resources/static/images/4_5233a92224c35d12c2329f903b248247.jpg_small.jpg"/>
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar04.jpg" alt="捷豹"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">捷豹</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar05.jpg" alt="宝马"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">宝马</a></h2></dd>
+                        </dl>
+
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar06.jpg" alt="奥迪"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">奥迪</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar07.jpg" alt="法拉利"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">法拉利</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycar08.jpg" alt="保时捷"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">保时捷</a></h2></dd>
+                        </dl>
+                        <dl class="">
+                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/mycat09.jpg" alt="野马"></a></dt>
+                            <dd><h2><a href="http://www.zztuku.com" target="_blank">野马</a></h2></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">movec();</script>
+            <!-- 图片切换  end -->
+            <div class="clear"></div>
+            <div class="shop_bd_top_center_hot"><img src="images/indexmycat.jpg" /></div>
+        </div>
+
+        <!-- 右侧 -->
+        <div class="shop_bd_top_right clearfix">
+            <div class="shop_bd_top_right_quickLink">
+                <a  class="login" href="/sso/tologin" title="会员登录"><i></i>会员登录</a>
+                <a  class="register" href="/sso/toregister" title="免费注册"><i></i>免费注册</a>
+                <a  class="join" title="商家开店" ><i></i>帮助中心</a>
+            </div>
+
+            <div class="shop_bd_top_right-style1 nc-home-news">
+                <ul class="tabs-nav">
+                    <li><a href="javascript:void(0);" class="hover">商城广告</a></li>
+                    <li><a href="javascript:void(0);">关于我们</a></li>
+                </ul>
+                <div class="clear"></div>
+                <div class="tabs-panel">
+                    <ul class="list-style01">
+                        <li><a title="如何申请开店" href="javascript:void(0);">汽车厂商</a><span>(2020-05-11)</span></li>
+                        <li><a title="商城商品推荐" href="javascript:void(0);">汽车小知识</a><span>(2020-05-11)</span></li>
+                        <li><a title="如何发货" href="javascript:void(0);">汽车新闻</a><span>(2020-05-11)</span></li>
+                        <li><a title="查看售出商品" href="javascript:void(0);">与车同行</a><span>(2020-05-11)</span></li>
+                        <li><a title="如何管理店铺" href="javascript:void(0);">我和我的车日志</a><span>(2020-05-11)</span></li>
+                        <li><a title="如何申请开店" href="javascript:void(0);">车友圈</a><span>(2020-05-11)</span></li>
+                        <li><a title="商城商品推荐" href="javascript:void(0);">附近的车店</a><span>(2020-05-11)</span></li>
+                        <li><a title="如何发货" href="javascript:void(0);">自我改装</a><span>(2020-05-11)</span></li>
+                        <li><a title="查看售出商品" href="javascript:void(0);">汽车大全</a><span>(2020-05-11)</span></li>
+                        <li><a title="如何管理店铺" href="javascript:void(0);">加入我们</a><span>(2020-05-11)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 右侧 End -->
+    </div>
+    <div class="clear"></div>
+    <!-- 第一块区域 End -->
+    <script>
+        $(function () {
+            queryKillTimes();
+        });
+
+        //服务器查询当前可以查看的秒杀的场次
+        function queryKillTimes() {
+            $.ajax({
+                url:"/kill/queryKillTimes",
+                type:"get",
+                success: function (data) {
+                    if(data.code=="200"){
+                        //查询成功
+                        for (var i = 0; i <data.data.length ; i++) {
+                            //转化为data对象
+                            var time=new Date(data.data[i]);
+
+                            //进行判断
+                            if(i==0){
+                                $("#time"+i).html("优惠卷"+time.getHours()+"点场(进行中)");
+                            }else {
+                                $("#time"+i).html("优惠卷"+time.getHours()+"点场(即将开始)");
+                            }
+                            //查询对应的秒杀商品的信息
+                            quertKillList(i);
+                        }
+                    }
+                }
+            });
+        }
+
+        //查询对应时间秒杀商品的信息
+        function quertKillList(n) {
+            $.ajax({
+                url:"kill/queryKillList",
+                type:"get",
+                data:{"n":n},
+                success:function (data) {
+                    if(data.code=="200"){
+                        var html="";
+                        for (var i = 0; i < data.data.length; i++) {
+                            html += "<li>\n" +
+                                "<dl>\n" +
+                                "<dt><a href='/html/" + data.data[i].id + ".html'><img style='width: 150px; height: 120px' src=\"/back/goods/showimg?imgPath=" + data.data[i].fmUrl + "\" /></a></dt>\n" +
+                                "<dd><a>" + data.data[i].subject + "</a></dd>\n" +
+                                "<dd> 原价：<em><del>￥" + data.data[i].price + "</del></em>元</dd>\n" +
+                                "<dd> 秒杀价：<em>￥" + data.data[i].goodsSecondKillEntity.killPrice + "</em>元</dd>\n" +
+                                "</dl>\n" +
+                                "</li>";
+                        }
+                        $("#ul"+n).html(html);
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- 第二块区域 -->
+    <div class="shop_bd_2 clearfix">
+
+        <!-- TODO 秒杀商品的展示 -->
+        <div class="shop_bd_tuijian">
+            <ul class="tuijian_tabs">
+                <li class="hover"  onmouseover="easytabs('1', '1');" onfocus="easytabs('1', '1');" onclick="return false;" id="tuijian_content_btn_1">
+                    <a href="javascript:void(0);" id="time0">特别推荐</a>
+                </li>
+                <li onmouseover="easytabs('1', '2');" onfocus="easytabs('1', '2');" onclick="return false;" id="tuijian_content_btn_2" >
+                    <a href="javascript:void(0);" id="time1">热门商品</a>
+                </li>
+                <li onmouseover="easytabs('1', '3');" onfocus="easytabs('1', '3');" onclick="return false;" id="tuijian_content_btn_3">
+                    <a href="javascript:void(0);" id="time2">新品上架</a>
+                </li>
+            </ul>
+            <div class="tuijian_content">
+                <div id="tuijian_content_1" class="tuijian_shangpin" style="display: block;">
+                    <!--TODO 具体商品的展示-->
+                    <ul id="ul0">
+                    </ul>
+                </div>
+
+                <div id="tuijian_content_2" class="tuijian_shangpin">
+                    <ul id="ul1">
+                    </ul>
+                </div>
+                <div id="tuijian_content_3" class="tuijian_shangpin tuijian_content">
+                    <ul id="ul2">
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- 特别推荐 End -->
+        <!-- 首发 -->
+        <div class="shop_bd_shoufa"><img src="images/shoufa.jpg" /></div>
+        <!-- 首发 End -->
+
+    </div>
+    <div class="clear"></div>
+    <!-- 第二块区域 End -->
+    <!-- 第四块区域 End -->
+    <!-- 第五块区域 男女服饰 -->
+    <!-- 第五块区域 End -->
+    <div class="faq">
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a ><span>积分兑换说明</span></a></dd>
+            <dd><a ><span>积分明细</span></a></dd>
+            <dd><a ><span>查看已购买商</span></a></dd>
+            <dd><a ><span>我要买</span></a></dd>
+            <dd><a ><span>忘记密码</span></a></dd>
+        </dl>
+
+        <dl>
+            <dt>店主之家</dt>
+            <dd><a ><span>如何申请开店</span></a></dd>
+            <dd><a ><span>商城商品推荐</span></a></dd>
+            <dd><a ><span>如何发货</span></a></dd>
+            <dd><a ><span>查看已售商品</span></a></dd>
+            <dd><a ><span>如何管理店铺</span></a></dd>
+        </dl>
+
+        <dl>
+            <dt>支付方式</dt>
+            <dd><a ><span>公司转账</span></a></dd>
+            <dd><a ><span>邮局汇款</span></a></dd>
+            <dd><a ><span>分期付款</span></a></dd>
+            <dd><a ><span>在线支付</span></a></dd>
+            <dd><a ><span>如何注册支付</span></a></dd>
+        </dl>
+
+        <dl>
+            <dt>售后服务</dt>
+            <dd><a ><span>退款申请</span></a></dd>
+            <dd><a ><span>返修/退换货</span></a></dd>
+            <dd><a ><span>退换货流程</span></a></dd>
+            <dd><a ><span>退换货政策</span></a></dd>
+            <dd><a ><span>联系卖家</span></a></dd>
+        </dl>
+
+        <dl>
+            <dt>客服中心</dt>
+            <dd><a ><span>修改收货地址</span></a></dd>
+            <dd><a ><span>商品发布</span></a></dd>
+            <dd><a ><span>会员修改个人</span></a></dd>
+            <dd><a ><span>会员修改密码</span></a></dd>
+
+        </dl>
+
+        <dl>
+            <dt>关于我们</dt>
+            <dd><a ><span>合作及洽谈</span></a></dd>
+            <dd><a ><span>招聘英才</span></a></dd>
+            <dd><a ><span>联系我们</span></a></dd>
+            <dd><a ><span>关于Shop</span></a></dd>
+        </dl>
+
+
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- Body End -->
+
+<!-- Footer - wll - 2013/3/24 -->
+<div class="clear"></div>
+<div class="shop_footer">
+    <div class="shop_footer_link">
+        <p>
+            <a >首页</a>|
+            <a >招聘英才</a>|
+            <a >广告合作</a>|
+            <a >关于ShopCZ</a>|
+            <a >关于我们</a>
+        </p>
+    </div>
+    <div class="shop_footer_copy">
+        <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+    </div>
+</div>
+<!-- Footer End -->
+</body>
+</html>

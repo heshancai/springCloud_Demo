@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:20000
+      name: application
+      profile: front,eureka,thymeleaf
+

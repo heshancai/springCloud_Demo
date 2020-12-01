@@ -1,0 +1,6 @@
+#秒杀服务的统一配置管理
+spring:
+  application:
+    name: micservice-kill
+server:
+  port: 9094

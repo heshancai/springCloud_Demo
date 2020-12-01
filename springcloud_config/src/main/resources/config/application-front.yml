@@ -1,0 +1,6 @@
+#前端微服务的统一管理配置
+server:
+  port: 9093
+spring:
+  application:
+    name: micservice-front

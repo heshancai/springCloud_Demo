@@ -1,0 +1,9 @@
+server:
+  port: 30000
+#rabbitmq队列配置的统一管理
+spring:
+  rabbitmq:
+    host: 192.168.184.188
+    username: admin
+    password: admin
+    virtual-host: /admin

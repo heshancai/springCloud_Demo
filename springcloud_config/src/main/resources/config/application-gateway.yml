@@ -1,0 +1,43 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      #配置路由规则
+      routes:
+        #后台服务的路由规则
+        - id: back
+          uri: lb://MICSERVICE-GOODSBACK
+          predicates:
+            - Path=/back/**
+          filters:
+            - StripPrefix=1           #去掉一层前缀/back
+        #秒杀微服务的路由规则
+        - id: kill2
+          uri: lb://MICSERVICE-KILL
+          predicates:
+            - Path=/kill/qiangGou
+          filters:
+            - mycode
+            - mykill      #抢购商品时做验证码得校验和防止提前下单拦截
+        - id: kill
+          uri: lb://MICSERVICE-KILL
+          predicates:
+            - Path=/kill/**,/html/**
+        #登录微服务的路由规则
+        - id: sso
+          uri: lb://MICSERVICE-SSO
+          predicates:
+            - Path=/sso/**
+        #静态资源服务的路由规则
+        - id: resource
+          uri: lb://MICSERVICE-RESOURCES
+          predicates:
+            - Path=/css/**,/images/**,/js/**,/widget/**
+        #前台微服务的路由规则
+        - id: front
+          uri: lb://MICSERVICE-FRONT
+          predicates:
+            - Path=/**     #拦截所有  放到最后

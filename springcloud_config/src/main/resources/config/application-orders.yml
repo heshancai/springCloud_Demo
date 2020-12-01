@@ -1,0 +1,5 @@
+server:
+  port: 9097
+spring:
+  application:
+    name: micservice-orders

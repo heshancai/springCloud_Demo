@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--公共的登录的导航栏页面 div进行包裹-->
+    <!--为当前的div取一个名字:片段名-->
+    <div th:fragment="myheader">
+
+        <!--引入webSocket初始化连接服务器js文件-->
+        <script src="/js/websocket.js"></script>
+        <!--进行登录的验证-->
+        <script>
+            //进行登录的验证当前页面引入的登录页面进行判断
+            //自动发送请求到后台
+            $(function () {
+                $.ajax({
+                    url:"/sso/isologin",
+                    /*使用jqery封装好的jsop进行ajax跨域的而请求
+                    * ajax请求跨域，浏览器会组织请求发送者接收的响应
+                    * 使用jsonp可以解决该问题
+                    * 使用ajxa发送的请求，默认不会携带cookie
+                    * */
+                    success:function (data) {
+                        if(data.code==200){
+                            //登录成功
+                            $("#pid").html(data.data.nickname+"你好，欢迎来到<b>疯狂汽车城</b> <a href='/sso/logout'>注销</a>");
+                            //浏览器和服务器端建立长连接
+                            //封装js 初始化WebSocket 连接netty服务器
+                            initWs({
+                                url: "ws://127.0.0.1:30000/msg",
+                                mymessage: function(msgObj){
+                                    console.log("自定义的方法接收到消息：" + JSON.stringify(msgObj));
+                                    if(msgObj.type == 3){
+                                        //秒杀提醒消息
+                                        alert("提醒消息：您订阅的商品[" + msgObj.data.goods.subject + "]即将开抢，请做好准备....");
+                                    }
+                                },
+                                myopen: function(){
+                                    //连接服务器，注册当前的用户信息
+                                    var msg = {"type":1, "data":data.data.id};
+                                    sendMsgObj(msg);
+                                },
+                                heartTime: 10000,
+                                closeTime: 20000,
+                            });
+                        }else {
+                            //登录失败
+                            $("#pid").html("[<a onclick='mylogin();'>登录</a>][<a href='/sso/toregister'>注册</a>]");
+
+                        }
+                    }
+            });
+            });
+
+            //发送请求查询购物车的消息
+            /*$(function () {
+                $.ajax({
+                    url:"http://localhost:8084/cart/list",
+                    dataType:"jsonp",
+                    success:function (data) {
+                        //显示购物车的列表
+                        if(data.length>0 && data!=null){
+                            //获得购物车的数量
+                            $("#cartnumber").html(data.length);
+                            //循环列出购物车的信息
+                            //列表的头
+                            var html="<ul>";
+                            for (var i=0;i<data.length;i++){
+                                html+="<li style='width: 400px;height: auto;'>";
+                                //图片
+                                html+="<img style='width: 60px; height: 50px' src='" + data[i].goods.fmurl + "'/>";
+                                //商品的名称
+                                html+="<b style='margin-left: 10px'>"+data[i].goods.subject+"</b>";
+                                //价格和数量的展示
+                                html+="<span style='margin-left: 10px'>"+data[i].goods.price+"x"+data[i].number+"</span>";
+                                html+="<span style='margin-left: 10px'> 小计:"+data[i].cartPrice+"</span>";
+                                html+="</li>";
+                            }
+                            //列表的尾
+                            html+="</ul>";
+                            $("#cartList").html(html);
+                        }
+                    }
+                });
+            });*/
+
+            //获得当前页面的url
+            function mylogin(){
+                //当前页面的url
+                var returnUrl=location.href;
+                //当前路径进行编码
+                returnUrl=encodeURIComponent(returnUrl);
+                //进行登录携带需要返回页面的url
+                window.location="/sso/tologin?returnUrl="+returnUrl;
+
+            }
+        </script>
+
+
+
+
+        <div class="shop_hd_topNav">
+        <!--以下为公共的代码-->
+        <div class="shop_hd_topNav_all">
+            <!-- Header TopNav Left -->
+            <div class="shop_hd_topNav_all_left">
+                <!--登录状态的判断进行动态的拼接-->
+                <p id="pid">
+                    <!--您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>-->
+                    <!--[<a href="http://localhost:8083/sso/tologin">登录</a>]
+                    [<a href="http://localhost:8083/sso/toregister">注册</a>]-->
+                </p>
+                <!-- Header TopNav Left End -->
+
+                <!-- Header TopNav Right -->
+                <div class="shop_hd_topNav_all_right">
+                    <ul class="topNav_quick_menu">
+
+                        <li>
+                            <div class="topNav_menu">
+                                <a href="#" class="topNavHover">我的商城<i></i></a>
+                                <div class="topNav_menu_bd" style="display:none;" >
+                                    <ul>
+                                        <li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
+                                        <li><a title="个人主页" target="_top" href="#">个人主页</a></li>
+                                        <li><a title="我的订单" target="_top" href="http://localhost:8084/orders/list">我的订单</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topNav_menu">
+                                <a href="#" class="topNavHover">卖家中心<i></i></a>
+                                <div class="topNav_menu_bd" style="display:none;">
+                                    <ul>
+                                        <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
+                                        <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="topNav_menu">
+                                <a href="http://localhost:8084/cart/showlist" class="topNavHover">购物车<b id="cartnumber">0</b>种商品<i></i></a>
+                                <div id="cartList" class="topNav_menu_bd" style="display:none; width: 400px;height: 400px">
+                                    <p>还没有商品，赶快去挑选！</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="topNav_menu">
+                                <a href="#" class="topNavHover">我的收藏<i></i></a>
+                                <div class="topNav_menu_bd" style="display:none;">
+                                    <ul>
+                                        <li><a title="收藏的商品" target="_top" href="#">收藏的商品</a></li>
+                                        <li><a title="收藏的店铺" target="_top" href="#">收藏的店铺</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+<!--                        <li>-->
+<!--                            <div class="topNav_menu">-->
+<!--                                <a href="#">站内消息</a>-->
+<!--                            </div>-->
+<!--                        </li>-->
+
+                    </ul>
+                </div>
+                <!-- Header TopNav Right End -->
+            </div> <div class="clear"></div>
+        </div>
+            <div class="clear"></div>
+            <div class="shop_hd_header">
+                <div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+                <div class="shop_hd_header_search">
+                    <ul class="shop_hd_header_search_tab">
+                        <li id="search" class="current">商品</li>
+                        <li id="shop_search">店铺</li>
+                    </ul>
+                    <div class="clear"></div>
+                    <div class="search_form">
+                        <!--进入另外的项目工程-->
+                        <form method="post" action="http://localhost:8081/search/searchByKeyword">
+                            <div class="search_formstyle">
+                                <input type="text" class="search_form_text" name="keyword" placeholder="搜索其实很简单！" />
+                                <input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="search_tag">
+                        <a >宝马</a>
+                        <a >保时捷</a>
+                        <a >法拉利</a>
+                        <a >丰田</a>
+                        <a >宝骏</a>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+#连接配置文件中心拿取需要的配置信息
+spring:
+  cloud:
+    config:
+      uri: http://localhost:20000
+      name: application
+      profile: gateway,eureka,redis    #拿去路由网关的配置文件和注册中心的配置文件

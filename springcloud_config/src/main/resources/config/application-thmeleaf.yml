@@ -1,0 +1,4 @@
+#配置模板页缓存
+spring:
+  thymeleaf:
+    cache: false

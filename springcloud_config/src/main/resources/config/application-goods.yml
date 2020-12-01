@@ -1,0 +1,6 @@
+#商品服务的统一配置
+server:
+  port: 9090
+spring:
+  application:
+    name: micservice-goods

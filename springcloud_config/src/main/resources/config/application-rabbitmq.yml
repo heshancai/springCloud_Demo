@@ -1,0 +1,11 @@
+#rabbitmq队列配置的统一管理
+spring:
+  rabbitmq:
+    host: 192.168.184.188
+    username: admin
+    password: admin
+    virtual-host: /admin
+    listener:
+      simple:
+        #设置rabbitmq消费的手动确认
+        acknowledge-mode: manual

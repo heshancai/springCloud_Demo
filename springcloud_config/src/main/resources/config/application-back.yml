@@ -1,0 +1,6 @@
+#商品后台的配置文件的统一管理
+server:
+  port: 9091
+spring:
+  application:
+    name: micservice-goodsback

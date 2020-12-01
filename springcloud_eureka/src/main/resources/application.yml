@@ -1,0 +1,11 @@
+#配置服务的注册中心
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+    fetch-registry: false

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery.js"></script>
+    <script>
+
+        $(function () {
+            lunxun();
+        });
+        
+        function lunxun() {
+
+            //后台轮询查询当前的排队的位置
+            $.ajax({
+                type:"get",
+                url:"/kill/getbank",
+                data:{"gid":[[${gid}]]},//获取后台带过来的值
+                async: false,//设置为同步
+                success:function (data) {
+                    if(data.code=="200"){
+                        alert("抢购成功,跳转回首页");
+                        window.location="http://localhost";
+                    }else {
+                        //还在排队中
+                        var bank=data.data;
+                        $("#rank").html(bank);
+                    }
+                }
+
+            });
+            //轮询调用实时更新排队的信息
+            setTimeout(function () {
+                lunxun();
+            },1000*3);
+        }
+
+    </script>
+</head>
+
+<body>
+<h1>排队中..., 当前位置：<span id="rank">??</span></h1>
+</body>
+</html>

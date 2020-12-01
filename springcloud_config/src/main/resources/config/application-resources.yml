@@ -1,0 +1,6 @@
+#静态资源微服务的统一配置管理
+server:
+  port: 9095
+spring:
+  application:
+    name: micservice-resources
